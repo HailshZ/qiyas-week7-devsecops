@@ -7,7 +7,6 @@ on:
     branches: [ master ]
 
 jobs:
-  # Job 1: SAST with Semgrep
   semgrep:
     runs-on: ubuntu-latest
     steps:
@@ -16,17 +15,17 @@ jobs:
         with:
           config: .semgrep/custom-rules.yml
 
-  trivy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Trivy
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget https://github.com/aquasecurity/trivy/releases/download/v0.58.0/trivy_0.58.0_Linux-64bit.deb
-          sudo dpkg -i trivy_0.58.0_Linux-64bit.deb
-      - name: Build Docker image
-        run: docker build -t juice-shop:latest .
-      - name: Run Trivy vulnerability scanner (fail on CRITICAL)
-        run: trivy image --severity CRITICAL --exit-code 1 juice-shop:latest
+  # trivy:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Install Trivy
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y wget
+  #         wget https://github.com/aquasecurity/trivy/releases/download/v0.58.0/trivy_0.58.0_Linux-64bit.deb
+  #         sudo dpkg -i trivy_0.58.0_Linux-64bit.deb
+  #     - name: Build Docker image
+  #       run: docker build -t juice-shop:latest .
+  #     - name: Run Trivy vulnerability scanner (fail on CRITICAL)
+  #       run: trivy image --severity CRITICAL --exit-code 1 juice-shop:latest

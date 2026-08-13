@@ -14,7 +14,20 @@ jobs:
       - uses: returntocorp/semgrep-action@v1
         with:
           config: .semgrep/custom-rules.yml
-
+  push:
+    runs-on: ubuntu-latest
+    needs: [semgrep]
+    if: success()
+    steps:
+      - name: Build and tag image
+        run: |
+          docker build -t juice-shop:latest .
+          docker tag juice-shop:latest 192.168.56.50:5000/juice-shop:latest
+      - name: Push to local registry (simulated)
+        run: |
+          echo "✅ All security gates passed!"
+          echo "🚀 Pushing image to registry at 192.168.56.50:5000/juice-shop:latest"
+          echo "📦 Image would be pushed here in production"
   # trivy:
   #   runs-on: ubuntu-latest
   #   steps:

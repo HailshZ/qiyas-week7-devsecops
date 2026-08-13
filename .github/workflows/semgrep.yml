@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: semgrep/semgrep-action@v1
+      - uses: returntocorp/semgrep-action@v1
         with:
           config: auto
-          fail_on: high

@@ -1,0 +1,17 @@
+name: Semgrep SAST
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: semgrep/semgrep-action@v1
+        with:
+          config: auto
+          fail_on: high

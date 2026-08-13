@@ -1,0 +1,7 @@
+rules:
+  - id: force-failure
+    pattern: |
+      const API_KEY = "..."
+    message: "Hardcoded API key detected - this must be fixed before merging"
+    languages: [javascript]
+    severity: ERROR

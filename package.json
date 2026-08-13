@@ -99,6 +99,7 @@
     "check-dependencies": "^2.0.0",
     "clarinet": "^0.12.6",
     "colors": "1.4.0",
+    "lodash": "4.17.15",
     "compression": "^1.8.1",
     "config": "^3.3.12",
     "cookie-parser": "^1.4.7",
